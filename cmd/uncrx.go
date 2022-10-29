@@ -82,19 +82,9 @@ func main () {
 				 * (... zip data ...)
 				 */
 
-				var publickey_length = binary.LittleEndian.Uint32([]byte{
-					buffer[8],
-					buffer[9],
-					buffer[10],
-					buffer[11],
-				});
+				var publickey_length = binary.LittleEndian.Uint32(buffer[8:12]);
 
-				var signature_length = binary.LittleEndian.Uint32([]byte{
-					buffer[12],
-					buffer[13],
-					buffer[14],
-					buffer[15],
-				});
+				var signature_length = binary.LittleEndian.Uint32(buffer[12:16]);
 
 				var zip_data = buffer[16 + publickey_length + signature_length:];
 
@@ -136,12 +126,7 @@ func main () {
 				 * (... zip_data ...)
 				 */
 
-				var crx_header_length = binary.LittleEndian.Uint32([]byte{
-					buffer[8],
-					buffer[9],
-					buffer[10],
-					buffer[11],
-				});
+				var crx_header_length = binary.LittleEndian.Uint32(buffer[8:12]);
 
 				var zip_data = buffer[12 + crx_header_length:];
 
